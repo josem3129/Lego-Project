@@ -1,0 +1,34 @@
+//LOCALHOST 
+
+### Get all users 
+GET http://localhost:8080/lego
+
+### Get users by ID 
+Get http://localhost:8080/lego/66311807ecb86e512e56d062
+
+### creat user 
+POST http://localhost:8080/lego HTTP/1.1
+Content-Type: application/json
+
+{
+    "Name": "Imperial Star Destroyer",
+    "setNumber": "75394",
+    "peacesCount": "1555",
+    "Theme": "star wars",
+    "price": "159.99",
+    "Age": "10+",
+    "minifigs": "7"
+
+}
+
+### Update user 
+PUT http://localhost:3000/users/650c5812c06bc031e32200a HTTP/1.1 Content-Type: application/json
+
+{
+
+"firstName": "Bill", "lastName": "Gates", "email": "billgates@test.com", "favoriteColor": "red", "birthday": "12/12/20"
+
+}
+
+### Delet User
+ DELETE http://localhost:3000/users/66311a8103efcd5df66982df HTTP/1.1
