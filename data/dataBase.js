@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient
 let database;
 
 const initDbLego = (callback) => {
-    console.log(`try ${callback}`)
     if (database) {
         console.log('Db is already running!');
         return callback(null, database)
