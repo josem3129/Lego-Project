@@ -24,12 +24,16 @@ const callback = (err) => {
     } else {
     }
 }
-const legodb = mongodb.initDbLego(callback)
-console.log(legodb)
-const userdb = mongodb.initDbUser(callback)
+mongodb.initDbLego((err) => {
+    if (err) {
+        console.log(err);
+    } 
+})
 
-if (legodb || userdb) {
-    console.log("error")
-}else{
-    app.listen(port, () => {console.log(`connected to DB User / Lego and listening ${port}`)});        
-}
+mongodb.initDbUser((err) => {
+    if (err) {
+        console.log(err);
+    } else {
+        app.listen(port, () => {console.log(`running on port ${port}`)});        
+    }
+})
