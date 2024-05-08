@@ -7,7 +7,7 @@ const getAllLegos = async (req, res) => {
     const result = await mongodb.getDb().db().collection('Lego').find();
     result.toArray().then((Lego) =>{
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Lego);
+        res.status(200).json();
     })
 };
 
@@ -28,7 +28,7 @@ const postNewLego = async (req, res) =>{
         Name: body.Name,
         setNumber: body.setNumber,
         peacesCount: body.peacesCount,
-        Theme: body.theme,
+        Theme: body.Theme,
         price: body.price,
         Age: body.Age,
         minifigs: body.minifigs
