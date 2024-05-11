@@ -2,8 +2,8 @@ const router = require('express').Router();
 const controller = require('../controller/legoSets');
 const validation = require('../validate/validate')
 
-router.get('/', controller.getAllLegos);
-router.get('/:id', controller.getSingleLegos);
+router.get('/', controller.getAllStarWarsLegos);
+router.get('/:id', controller.getSingleStarWarsLegos);
 
 // Post, Update, Delete
 router.post('/',  validation.validationRules(), validation.validate, controller.postNewLego);

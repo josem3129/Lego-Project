@@ -15,17 +15,7 @@ const initDb = (callback) => {
         callback(null, database)
     });
 }
-const initDbUser = (callback) => {
-    if (database) {
-        console.log('Db is already running!');
-        return callback(null, database)
-    }
-    MongoClient.connect(process.env.MONGODB_URI_USER)
-    .then((client) => {
-        database = client;
-        callback(null, database)
-    });
-}
+
 const getDb = () => {
     if (!database) {
         throw Error('Db not started')
@@ -35,6 +25,5 @@ const getDb = () => {
 
 module.exports = {
     initDb,
-    initDbUser,
     getDb,
   };

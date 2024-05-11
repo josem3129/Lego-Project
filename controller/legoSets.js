@@ -2,7 +2,7 @@ const mongodb = require('../data/dataBase');
 const ObjectId = require('mongodb').ObjectId;
 
 // get all lego sets
-const getAllLegos =  (req, res) => {
+const getAllStarWarsLegos =  (req, res) => {
     console.log('tr1c');
     mongodb
     .getDb()
@@ -26,7 +26,7 @@ const getAllLegos =  (req, res) => {
 };
 
 //get single lego set
-const getSingleLegos = async (req, res) => {
+const getSingleStarWarsLegos = async (req, res) => {
     // if (!ObjectId.isValid(req.params.id) ||  req.params.id.length != 12) {
     //     res.status(400).send('please use valid ID');
     // }
@@ -93,4 +93,4 @@ const deleteLego = async (req, res) =>{
     
 };
 
-module.exports = {getAllLegos, getSingleLegos, postNewLego, updateLego, deleteLego}
+module.exports = {getAllStarWarsLegos, getSingleStarWarsLegos, postNewLego, updateLego, deleteLego}
