@@ -15,20 +15,15 @@ app
     .use('/', routes)
 
 process.on('uncaughtException', (err, origin) => {
-    console.log(process.stderr.fd, `uncaught exception ${err}\n exception origin ${origin}`)
+    console.log(process.stderr.fd, `Caught exception ${err}\n` + `exception origin: ${origin}`);
 })    
 
-
-mongodb.initDbLego((err) => {
+mongodb.initDb((err) => {
     if (err) {
-        console.log(err);
-    } 
-})
-
-mongodb.initDbUser((err) => {
-    if (err) {
-        console.log(err);
+      console.log(err);
     } else {
-        app.listen(port, () => {console.log(`running on port ${port}`)});        
+      app.listen(port);
+      console.log(`Connected to DB and listening on ${port}`);
     }
-})
+  });
+  

@@ -1,9 +1,9 @@
-const dotenv = require('dotenv').config()
-const MongoClient = require('mongodb').MongoClient
+const dotenv = require('dotenv').config();
+const MongoClient = require('mongodb').MongoClient;
 
 let database;
 
-const initDbLego = (callback) => {
+const initDb = (callback) => {
     if (database) {
         console.log('Db is already running!');
         return callback(null, database)
@@ -34,7 +34,7 @@ const getDb = () => {
 };
 
 module.exports = {
-    initDbLego,
+    initDb,
     initDbUser,
     getDb,
   };

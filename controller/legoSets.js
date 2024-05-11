@@ -2,30 +2,39 @@ const mongodb = require('../data/dataBase');
 const ObjectId = require('mongodb').ObjectId;
 
 // get all lego sets
-const getAllLegos = async (req, res) => {
-    
-    const result = await mongodb.getDb().db().collection('Lego').find();
-    result.toArray((err, lists) =>{
-        if (err) {
-            res.status(400).send('unable to connect to Db')
-        }
-        res.status(200).send(lists)
+const getAllLegos =  (req, res) => {
+    console.log('tr1c');
+    mongodb
+    .getDb()
+    .db()
+    .collection('Lego')
+    .find()
+    .toArray((err, lists) => {
+    console.log('tr1c2');
+      if (err) {
+    console.log('tr1c3');
+        
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+    console.log('tr1c4');
+
+      res.status(200).json(lists);
+    console.log('tr1c5');
+
     });
 };
 
 //get single lego set
 const getSingleLegos = async (req, res) => {
-    if (err || req.params.id != 12) {
-        res.status(200).send(err || 'please use valid ID')
-    }
+    // if (!ObjectId.isValid(req.params.id) ||  req.params.id.length != 12) {
+    //     res.status(400).send('please use valid ID');
+    // }
     const legoId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('Lego').find({_id: legoId});
-    result.toArray((err, lists) => {
-        if (err) {
-            res.status(400).send('please use a valid ID')            
-        }
+    result.toArray().then((users) =>{
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists[0]);
+        res.status(200).json(users[0]);
     })
 };
 //post lego set
