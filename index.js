@@ -18,12 +18,7 @@ process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, `uncaught exception ${err}\n exception origin ${origin}`)
 })    
 
-const callback = (err) => {
-    if (err) {
-        console.log(err);
-    } else {
-    }
-}
+
 mongodb.initDbLego((err) => {
     if (err) {
         console.log(err);

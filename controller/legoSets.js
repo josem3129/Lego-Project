@@ -5,20 +5,27 @@ const ObjectId = require('mongodb').ObjectId;
 const getAllLegos = async (req, res) => {
     
     const result = await mongodb.getDb().db().collection('Lego').find();
-    result.toArray().then((Lego) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json();
-    })
+    result.toArray((err, lists) =>{
+        if (err) {
+            res.status(400).send('unable to connect to Db')
+        }
+        res.status(200).send(lists)
+    });
 };
 
 //get single lego set
 const getSingleLegos = async (req, res) => {
-    console.log('GetUser');
+    if (err || req.params.id != 12) {
+        res.status(200).send(err || 'please use valid ID')
+    }
     const legoId = new ObjectId(req.params.id);
     const result = await mongodb.getDb().db().collection('Lego').find({_id: legoId});
-    result.toArray().then((Lego) =>{
+    result.toArray((err, lists) => {
+        if (err) {
+            res.status(400).send('please use a valid ID')            
+        }
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Lego[0]);
+        res.status(200).json(lists[0]);
     })
 };
 //post lego set
