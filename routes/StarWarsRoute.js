@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const controller = require('../controller/legoSets');
+const controller = require('../controller/StarWarsLegoSets');
 const validation = require('../validate/validate')
 
 router.get('/', controller.getAllStarWarsLegos);
