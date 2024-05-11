@@ -5,7 +5,7 @@
     "description": "User API",
     "version": "1.0.0"
   },
-  "host": ["localhost:8080","https://lego-project.onrender.com"],
+  "host": "https://lego-project.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
