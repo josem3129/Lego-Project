@@ -5,8 +5,7 @@
     "description": "User API",
     "version": "1.0.0"
   },
-  "host": ["localhost:8080",
-  "https://lego-project.onrender.com/"],
+  "host": ["localhost:8080","https://lego-project.onrender.com"],
   "basePath": "/",
   "schemes": [
     "http",
@@ -23,7 +22,7 @@
         }
       }
     },
-    "/lego/": {
+    "/StarWars/": {
       "get": {
         "description": "",
         "produces": [
@@ -73,13 +72,16 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/lego/{id}": {
+    "/StarWars/{id}": {
       "get": {
         "description": "",
         "produces": [
@@ -143,6 +145,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -168,11 +173,8 @@
         }
       }
     },
-    "/user/": {
+    "/HarryPotter/": {
       "get": {
-        "tags": [
-          "Users"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -184,9 +186,6 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
         "description": "",
         "parameters": [
           {
@@ -221,11 +220,8 @@
         }
       }
     },
-    "/user/{id}": {
+    "/HarryPotter/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -245,9 +241,6 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
         "description": "",
         "parameters": [
           {
@@ -288,9 +281,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
         "description": "",
         "parameters": [
           {
