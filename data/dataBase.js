@@ -9,10 +9,13 @@ const initDb = (callback) => {
         return callback(null, database)
     }
     MongoClient
-    .connect(process.env.MONGODB_URI_LEGO)
+    .connect(process.env.MONGODB_URI)
     .then((client) => {
         database = client;
         callback(null, database)
+    })
+    .catch((err) => {
+        callback(err)
     });
 }
 

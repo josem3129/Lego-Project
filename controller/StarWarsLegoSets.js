@@ -3,21 +3,38 @@ const ObjectId = require('mongodb').ObjectId;
 
 // get all lego sets
 const getAllStarWarsLegos =  async (req, res) => {
-    const result = await mongodb.getDb().db().collection('StarWars').find();
-    result.toArray().then((lego) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lego);
-    })
+    mongodb
+    .getDb()
+    .db()
+    .collection('StarWars')
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
 };
 
 //get single lego set
 const getSingleStarWarsLegos = async (req, res) => {
-    const legoId = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db().collection('StarWars').find({_id: legoId});
-    result.toArray().then((lego) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lego[0]);
-    })
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid id.');
+      }
+      const LegoId = new ObjectId(req.params.id);
+      mongodb
+        .getDb()
+        .db()
+        .collection('StarWars')
+        .find({ _id: LegoId })
+        .toArray((err, result) => {
+          if (err) {
+            res.status(400).json({ message: err });
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(result[0]);
+        });
 };
 //post lego set
 const postNewLego = async (req, res) =>{
@@ -32,7 +49,7 @@ const postNewLego = async (req, res) =>{
         minifigs: body.minifigs
     };
     console.log(legoSet)
-    const response = await mongodb.getDb().db().collection('Lego').insertOne(legoSet);
+    const response = await mongodb.getDb().db().collection('StarWars').insertOne(legoSet);
     if (response.acknowledged) {
         res.status(204).send(response.acknowledged);
     } else {
@@ -42,19 +59,19 @@ const postNewLego = async (req, res) =>{
 };
 //update lego set
 const updateLego = async (req, res) =>{
-    let body = req.body;
     const legoId = new ObjectId(req.params.id);
     const LegoInfo = {
-        Name: body.Name,
-        setNumber: body.setNumber,
-        peacesCount: body.peacesCount,
-        Theme: body.theme,
-        price: body.price,
-        Age: body.Age,
-        minifigs: body.minifigs
+        Name: req.body.Name,
+        setNumber: req.body.setNumber,
+        peacesCount: req.body.peacesCount,
+        Theme: req.body.theme,
+        price: req.body.price,
+        Age: req.body.Age,
+        minifigs: req.body.minifigs
                 
     };
     const response = await mongodb.getDb().db().collection('StarWars').replaceOne({_id: legoId}, LegoInfo);
+    console.log(response)
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
