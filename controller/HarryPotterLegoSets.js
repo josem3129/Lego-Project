@@ -2,36 +2,56 @@ const mongodb = require('../data/dataBase');
 const ObjectId = require('mongodb').ObjectId;
 
 const getallHarryPotterLegoSets = async (req, res) => {
-    const result = await mongodb.getDb().db().collection('HarryPotter').find();
-    result.toArray().then((users) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users);
-    })
+    mongodb
+    .getDb()
+    .db()
+    .collection('HarryPotter')
+    .find()
+    .toArray((err, lists) => {
+      if (err) {
+        res.status(400).json({ message: err });
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
+    });
 };
 
-const GetSingleHarryPotterLegoSets = async (req, res) => {
-    const legoId = new ObjectId(req.params.id);
-    const result = await mongodb.getDb().db().collection('HarryPotter').find({_id: legoId});
-    result.toArray().then((lego) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lego[0]);
-    })
+const GetSingleHarryPotterLegoSets = (req, res) => {
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid id.');
+      }
+      const LegoId = new ObjectId(req.params.id);
+      mongodb
+        .getDb()
+        .db()
+        .collection('HarryPotter')
+        .find({ _id: LegoId })
+        .toArray((err, result) => {
+          if (err) {
+            res.status(400).json({ message: err });
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(result[0]);
+        });
 };
 //post method
 const postHarryPotterSet = async (req, res) =>{
     let body = req.body;
-    const user = {
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-        favoriteColor: body.favoriteColor
+    const legoSet = {
+        Name: body.Name,
+        setNumber: body.setNumber,
+        peacesCount: body.peacesCount,
+        Theme: body.Theme,
+        price: body.price,
+        Age: body.Age,
+        minifigs: body.minifigs
     };
-    const response = await mongodb.getDb().db().collection('HarryPotter').insertOne(user);
-    console.log(response.acknowledged);
+    console.log(legoSet)
+    const response = await mongodb.getDb().db().collection('HarryPotter').insertOne(legoSet);
     if (response.acknowledged) {
-        res.status(204).send();
+        res.status(204).send(response.acknowledged);
     } else {
-        res.status(500).json(response.error || 'some error occurred while adding the user');
+        res.status(500).json(response.error || 'some error occurred while adding the Lego set');
     }
     
 };
@@ -40,10 +60,13 @@ const updatHarryPotterSet = async (req, res) =>{
     let body = req.body;
     const userId = new ObjectId(req.params.id);
     const user = {
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-        favoriteColor: body.favoriteColor
+        Name: body.Name,
+        setNumber: body.setNumber,
+        peacesCount: body.peacesCount,
+        Theme: body.Theme,
+        price: body.price,
+        Age: body.Age,
+        minifigs: body.minifigs
     };
     const response = await mongodb.getDb().db().collection('HarryPotter').replaceOne({_id: userId}, user);
     if (response.modifiedCount > 0) {

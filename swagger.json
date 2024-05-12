@@ -5,7 +5,7 @@
     "description": "lego sets I own API",
     "version": "1.0.0"
   },
-  "host": "https://lego-project.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
     "http",
@@ -188,6 +188,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
@@ -200,16 +203,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "Name": {
                   "example": "any"
                 },
-                "lastName": {
+                "setNumber": {
                   "example": "any"
                 },
-                "email": {
+                "peacesCount": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "Theme": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "Age": {
+                  "example": "any"
+                },
+                "minifigs": {
                   "example": "any"
                 }
               }
@@ -243,6 +255,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
@@ -261,16 +276,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "Name": {
                   "example": "any"
                 },
-                "lastName": {
+                "setNumber": {
                   "example": "any"
                 },
-                "email": {
+                "peacesCount": {
                   "example": "any"
                 },
-                "favoriteColor": {
+                "Theme": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "Age": {
+                  "example": "any"
+                },
+                "minifigs": {
                   "example": "any"
                 }
               }
