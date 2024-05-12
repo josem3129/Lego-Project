@@ -131,7 +131,7 @@
                 "peacesCount": {
                   "example": "any"
                 },
-                "theme": {
+                "Theme": {
                   "example": "any"
                 },
                 "price": {
