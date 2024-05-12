@@ -5,7 +5,7 @@
     "description": "lego sets I own API",
     "version": "1.0.0"
   },
-  "host": "https://lego-project.onrender.com",
+  "host": "lego-project.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
