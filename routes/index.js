@@ -14,7 +14,7 @@ Router.get('/logout', function (req, res, next ) {
         if (err) {
             return next(err);
         }
-        res.redirect('/')
+        res.status(200).send('Your logged out')
     });
 });
 

@@ -5,4 +5,11 @@ const isAuthenticated = (req, res, next) => {
     next()
 };
 
-module.exports = {isAuthenticated}
+const checkLogin = (req, res, next) => {
+    if (req.session.user === undefined) {
+        return res.redirect('/')
+    }
+    next()
+}
+
+module.exports = {isAuthenticated, checkLogin}

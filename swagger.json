@@ -5,10 +5,9 @@
     "description": "lego sets I own API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "lego-project.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
@@ -26,8 +25,8 @@
       "get": {
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -44,6 +43,9 @@
     },
     "/StarWars/": {
       "get": {
+        "tags": [
+          "Star wars"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -58,6 +60,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Star wars"
+        ],
         "description": "",
         "parameters": [
           {
@@ -109,6 +114,9 @@
     },
     "/StarWars/{id}": {
       "get": {
+        "tags": [
+          "Star wars"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -131,6 +139,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Star wars"
+        ],
         "description": "",
         "parameters": [
           {
@@ -186,6 +197,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Star wars"
+        ],
         "description": "",
         "parameters": [
           {
@@ -210,6 +224,9 @@
     },
     "/HarryPotter/": {
       "get": {
+        "tags": [
+          "Harry Potter"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -224,6 +241,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Harry Potter"
+        ],
         "description": "",
         "parameters": [
           {
@@ -272,6 +292,9 @@
     },
     "/HarryPotter/{id}": {
       "get": {
+        "tags": [
+          "Harry Potter"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -294,6 +317,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Harry Potter"
+        ],
         "description": "",
         "parameters": [
           {
@@ -346,6 +372,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Harry Potter"
+        ],
         "description": "",
         "parameters": [
           {

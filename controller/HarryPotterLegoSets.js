@@ -2,6 +2,7 @@ const mongodb = require('../data/dataBase');
 const ObjectId = require('mongodb').ObjectId;
 
 const getallHarryPotterLegoSets = async (req, res) => {
+    //#swagger.tags=['Harry Potter']
     mongodb
     .getDb()
     .db()
@@ -17,6 +18,7 @@ const getallHarryPotterLegoSets = async (req, res) => {
 };
 
 const GetSingleHarryPotterLegoSets = (req, res) => {
+    //#swagger.tags=['Harry Potter']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid id.');
       }
@@ -36,6 +38,7 @@ const GetSingleHarryPotterLegoSets = (req, res) => {
 };
 //post method
 const postHarryPotterSet = async (req, res) =>{
+    //#swagger.tags=['Harry Potter']
     let body = req.body;
     const legoSet = {
         Name: body.Name,
@@ -57,6 +60,7 @@ const postHarryPotterSet = async (req, res) =>{
 };
 //update 
 const updatHarryPotterSet = async (req, res) =>{
+    //#swagger.tags=['Harry Potter']
     let body = req.body;
     const userId = new ObjectId(req.params.id);
     const user = {
@@ -78,6 +82,7 @@ const updatHarryPotterSet = async (req, res) =>{
 };
 //delete 
 const deleteHarryPotterSet = async (req, res) =>{
+    //#swagger.tags=['Harry Potter']
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('HarryPotter').deleteOne({_id: userId}, true);
     console.log(response.deletedCount);

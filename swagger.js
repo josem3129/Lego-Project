@@ -5,8 +5,8 @@ const doc = {
         title: 'Lego api',
         description: 'lego sets I own API'
     },
-    host: 'localhost:8080',
-    schemes: ['http', 'https']
+    host: 'lego-project.onrender.com',
+    schemes: ['https']
     
 };
 

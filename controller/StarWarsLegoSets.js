@@ -3,6 +3,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 // get all lego sets
 const getAllStarWarsLegos =  async (req, res) => {
+    //#swagger.tags=['Star wars']
     mongodb
     .getDb()
     .db()
@@ -19,6 +20,8 @@ const getAllStarWarsLegos =  async (req, res) => {
 
 //get single lego set
 const getSingleStarWarsLegos = async (req, res) => {
+    //#swagger.tags=['Star wars']
+
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid id.');
       }
@@ -38,6 +41,7 @@ const getSingleStarWarsLegos = async (req, res) => {
 };
 //post lego set
 const postNewLego = async (req, res) =>{
+    //#swagger.tags=['Star wars']
     let body = req.body;
     const legoSet = {
         Name: body.Name,
@@ -59,6 +63,7 @@ const postNewLego = async (req, res) =>{
 };
 //update lego set
 const updateLego = async (req, res) =>{
+    //#swagger.tags=['Star wars']
     const legoId = new ObjectId(req.params.id);
     const LegoInfo = {
         Name: req.body.Name,
@@ -81,6 +86,7 @@ const updateLego = async (req, res) =>{
 };
 //delete lego set
 const deleteLego = async (req, res) =>{
+    //#swagger.tags=['Star wars']
     const legoId = new ObjectId(req.params.id);
     const response = await mongodb.getDb().db().collection('StarWars').deleteOne({_id: legoId}, true);
     console.log(response.deletedCount);
